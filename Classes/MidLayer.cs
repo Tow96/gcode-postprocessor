@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 
 namespace gcode_postprocessor.Classes
@@ -14,7 +13,7 @@ namespace gcode_postprocessor.Classes
         /// </summary>
         /// <param name="Gcode">Contents of a gcode splitted in lines</param>
         /// <param name="Instruction">Instruction to be added</param>
-        /// <returns></returns>
+        /// <returns>Gcode divided in lines <returns>
         public static string[] AddMidLayerCode(string[] Gcode, string Instruction)
         {
             // Returns error if the given instruction is null or empty
