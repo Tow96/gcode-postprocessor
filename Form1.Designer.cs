@@ -32,7 +32,11 @@
             this.BrowseButton = new System.Windows.Forms.Button();
             this.MidLayerCheck = new System.Windows.Forms.CheckBox();
             this.MidLayerText = new System.Windows.Forms.TextBox();
+            this.PauseCheck = new System.Windows.Forms.CheckBox();
             this.RunButton = new System.Windows.Forms.Button();
+            this.PauseGrid = new System.Windows.Forms.DataGridView();
+            this.AddPauseBttn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.PauseGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // BrowseInput
@@ -44,7 +48,7 @@
             // 
             // BrowseButton
             // 
-            this.BrowseButton.Location = new System.Drawing.Point(344, 10);
+            this.BrowseButton.Location = new System.Drawing.Point(344, 11);
             this.BrowseButton.Name = "BrowseButton";
             this.BrowseButton.Size = new System.Drawing.Size(75, 23);
             this.BrowseButton.TabIndex = 1;
@@ -55,8 +59,6 @@
             // MidLayerCheck
             // 
             this.MidLayerCheck.AutoSize = true;
-            this.MidLayerCheck.Checked = true;
-            this.MidLayerCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MidLayerCheck.Location = new System.Drawing.Point(12, 60);
             this.MidLayerCheck.Name = "MidLayerCheck";
             this.MidLayerCheck.Size = new System.Drawing.Size(154, 17);
@@ -73,9 +75,20 @@
             this.MidLayerText.TabIndex = 1;
             this.MidLayerText.Text = "G4 P1";
             // 
+            // PauseCheck
+            // 
+            this.PauseCheck.AutoSize = true;
+            this.PauseCheck.Location = new System.Drawing.Point(12, 88);
+            this.PauseCheck.Name = "PauseCheck";
+            this.PauseCheck.Size = new System.Drawing.Size(144, 17);
+            this.PauseCheck.TabIndex = 3;
+            this.PauseCheck.Text = "Add pauses in the layers:";
+            this.PauseCheck.UseVisualStyleBackColor = true;
+            this.PauseCheck.CheckedChanged += new System.EventHandler(this.PauseCheck_CheckedChanged);
+            // 
             // RunButton
             // 
-            this.RunButton.Location = new System.Drawing.Point(344, 76);
+            this.RunButton.Location = new System.Drawing.Point(344, 288);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 2;
@@ -83,18 +96,42 @@
             this.RunButton.UseVisualStyleBackColor = true;
             this.RunButton.Click += new System.EventHandler(this.RunButton_Click);
             // 
+            // PauseGrid
+            // 
+            this.PauseGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PauseGrid.Location = new System.Drawing.Point(12, 116);
+            this.PauseGrid.Name = "PauseGrid";
+            this.PauseGrid.Size = new System.Drawing.Size(407, 166);
+            this.PauseGrid.TabIndex = 5;
+            this.PauseGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.PauseGrid_Click);
+            // 
+            // AddPauseBttn
+            // 
+            this.AddPauseBttn.Location = new System.Drawing.Point(169, 88);
+            this.AddPauseBttn.Name = "AddPauseBttn";
+            this.AddPauseBttn.Size = new System.Drawing.Size(75, 23);
+            this.AddPauseBttn.TabIndex = 6;
+            this.AddPauseBttn.Text = "Add Pause";
+            this.AddPauseBttn.UseVisualStyleBackColor = true;
+            this.AddPauseBttn.Click += new System.EventHandler(this.AddPauseBttn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 111);
+            this.ClientSize = new System.Drawing.Size(431, 321);
+            this.Controls.Add(this.AddPauseBttn);
+            this.Controls.Add(this.PauseGrid);
+            this.Controls.Add(this.PauseCheck);
             this.Controls.Add(this.RunButton);
             this.Controls.Add(this.MidLayerCheck);
             this.Controls.Add(this.MidLayerText);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.BrowseInput);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GCODE post processor";
+            ((System.ComponentModel.ISupportInitialize)(this.PauseGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,7 +142,10 @@
         private System.Windows.Forms.Button BrowseButton;
         private System.Windows.Forms.CheckBox MidLayerCheck;
         private System.Windows.Forms.TextBox MidLayerText;
+        private System.Windows.Forms.CheckBox PauseCheck;
         private System.Windows.Forms.Button RunButton;
+        private System.Windows.Forms.DataGridView PauseGrid;
+        private System.Windows.Forms.Button AddPauseBttn;
     }
 }
 

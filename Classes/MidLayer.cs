@@ -28,6 +28,13 @@ namespace gcode_postprocessor.Classes
                 if (rx.IsMatch(Gcode[i])) { Gcode[i] = $"{Gcode[i]}\n{Instruction}"; }
             }
 
+            // re-joins the gcode and then splits it again in order to have the added instruction separate from the LAYER
+            string joinedGcode = string.Join("\n", Gcode);
+            Gcode = joinedGcode.Split(
+                new[] { "\r\n", "\r", "\n" },
+                System.StringSplitOptions.None
+                );
+
             return Gcode;
         }
     }
