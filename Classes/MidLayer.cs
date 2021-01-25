@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 
 namespace gcode_postprocessor.Classes
@@ -14,7 +13,7 @@ namespace gcode_postprocessor.Classes
         /// </summary>
         /// <param name="Gcode">Contents of a gcode splitted in lines</param>
         /// <param name="Instruction">Instruction to be added</param>
-        /// <returns></returns>
+        /// <returns>Gcode divided in lines <returns>
         public static string[] AddMidLayerCode(string[] Gcode, string Instruction)
         {
             // Returns error if the given instruction is null or empty
@@ -28,6 +27,13 @@ namespace gcode_postprocessor.Classes
                 // If a line change is found, adds the instruction
                 if (rx.IsMatch(Gcode[i])) { Gcode[i] = $"{Gcode[i]}\n{Instruction}"; }
             }
+
+            // re-joins the gcode and then splits it again in order to have the added instruction separate from the LAYER
+            string joinedGcode = string.Join("\n", Gcode);
+            Gcode = joinedGcode.Split(
+                new[] { "\r\n", "\r", "\n" },
+                System.StringSplitOptions.None
+                );
 
             return Gcode;
         }
