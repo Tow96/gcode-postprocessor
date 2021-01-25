@@ -48,8 +48,20 @@ namespace gcode_postprocessor.Classes
                     // starts from this position as all the pauses are sorted
                     if (rx.IsMatch(Gcode[i]))
                     {
+                        // Adds a Change filament routine
                         if (p.ChangeFilament) { Gcode[i] = $"{Gcode[i]}\nM600"; }
-                        else { Gcode[i] = $"{Gcode[i]}\nG27 P2\nM0"; }
+                        // If the command is just pause, adds the following
+                        else 
+                        { 
+                            // Stores the current position
+                            Gcode[i] = $"{Gcode[i]}\nG60 S0";
+                            // Parks the nozzle
+                            Gcode[i] = $"{Gcode[i]}\nG27 P2";
+                            // Pauses the print
+                            Gcode[i] = $"{Gcode[i]}\nM0"; 
+                            // Restores the Z position
+                            Gcode[i] = $"{Gcode[i]}\nG61 X Y Z S0";
+                        }
 
                         // stores the current i-1 as the new start for the next pause
                         i_initial = i - 1;
